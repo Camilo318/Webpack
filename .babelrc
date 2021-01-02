@@ -1,6 +1,9 @@
 {
     "presets": [
-        "@babel/preset-env",  //ES6+
+        ["@babel/preset-env", {
+            "core-js": 3.8,
+            "useBuiltIns": "usage"
+        }], //ES6+
         "@babel/preset-react" //JSX
     ]
 }
