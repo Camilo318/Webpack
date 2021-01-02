@@ -1,16 +1,13 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const {CleanWebpackPlugin} = require('clean-webpack-plugin')
-
-
-
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
     entry: './src/index.js',
     output: {
         filename: 'main.[contenthash].js',
         path: path.resolve(__dirname, 'dist'),
-        assetModuleFilename: 'assets/images/[contenthash][ext][query]'
+        assetModuleFilename: 'assets/images/[hash][ext][query]'
     },
     plugins: [
         new CleanWebpackPlugin(),
@@ -20,6 +17,7 @@ module.exports = {
         })
     ],
     mode: 'development',
+    devtool: 'source-map',
     devServer: {
         historyApiFallback: true,
         publicPath: '/'
@@ -27,6 +25,18 @@ module.exports = {
     
     resolve: {
         extensions: ['.jsx', '.js']
+    },
+    optimization: {
+        runtimeChunk: 'single',
+        splitChunks: {
+            cacheGroups: {
+                vendor: {
+                    test: /node_modules/,
+                    name: 'vendors',
+                    chunks: 'all'
+                }
+            }
+        }
     },
 
     module: {
