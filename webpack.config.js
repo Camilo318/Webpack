@@ -8,9 +8,9 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 module.exports = {
     entry: './src/index.js',
     output: {
-        filename: 'main.[hash].js',
+        filename: 'main.[contenthash].js',
         path: path.resolve(__dirname, 'dist'),
-        assetModuleFilename: 'assets/images/[hash][ext][query]'
+        assetModuleFilename: 'assets/images/[contenthash][ext][query]'
     },
     plugins: [
         new CleanWebpackPlugin(),
@@ -19,11 +19,11 @@ module.exports = {
             inject: true
         })
     ],
-
+    mode: 'development',
     devServer: {
         historyApiFallback: true,
         publicPath: '/'
-    }
+    },
     
     resolve: {
         extensions: ['.jsx', '.js']
@@ -41,8 +41,13 @@ module.exports = {
                 test: /\.s[ac]ss$/,
                 use: [
                     'style-loader',
-                    'css-loader',
-                    'sass-loader'
+                    'css-loader',  
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            implementation: require('sass')
+                        }
+                    }
                 ]
             },
 
