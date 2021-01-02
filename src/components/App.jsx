@@ -6,14 +6,16 @@ const App = () => {
     const handleClick = () => {
         setList(data.loaders)
     }
+
+    const loaders = list.map(loader => (
+        <li key={loader.id}>
+            {loader.name}
+        </li>
+    ))
     return (
         <div>
             <h1>Billie Eilish</h1>
-            <ul>
-                {list.map(loader => (
-                    <li key={loader.id}>{loader.name}</li>
-                ))}
-            </ul>
+            <ul>{loaders}</ul>
 
             <button onClick={handleClick}>Show Loaders</button>
         </div>

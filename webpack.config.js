@@ -8,8 +8,9 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 module.exports = {
     entry: './src/index.js',
     output: {
-        filename: 'main.js',
-        path: path.resolve(__dirname, 'dist')
+        filename: 'main.[hash].js',
+        path: path.resolve(__dirname, 'dist'),
+        assetModuleFilename: 'assets/images/[hash][ext][query]'
     },
     plugins: [
         new CleanWebpackPlugin(),
@@ -18,6 +19,11 @@ module.exports = {
             inject: true
         })
     ],
+
+    devServer: {
+        historyApiFallback: true,
+        publicPath: '/'
+    }
     
     resolve: {
         extensions: ['.jsx', '.js']
@@ -47,13 +53,7 @@ module.exports = {
 
             {
                 test: /\.(png|svg|jpg|gif)$/,
-                use: {
-                    loader: 'file-loader',
-                    options: {
-                        name: "[name].[hash].[ext]",
-                        outputPath: 'assets/images'
-                    }
-                }
+                type: 'asset/resource'
             }
         ]
     }
