@@ -1,6 +1,7 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const { HotModuleReplacementPlugin } = require('webpack')
 
 module.exports = {
     entry: './src/index.js',
@@ -10,6 +11,7 @@ module.exports = {
         assetModuleFilename: 'assets/images/[hash][ext][query]'
     },
     plugins: [
+        new HotModuleReplacementPlugin(),
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             template: './public/index.html',
@@ -20,7 +22,8 @@ module.exports = {
     devtool: 'source-map',
     devServer: {
         historyApiFallback: true,
-        publicPath: '/'
+        publicPath: '/',
+        hot: true
     },
     
     resolve: {
