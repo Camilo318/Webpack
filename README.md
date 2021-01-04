@@ -2,28 +2,33 @@
 ## The basic set up for Webpack
 
 Sometimes setting up webpack for every new project is a hassle.
-I guess Parcel is a nice option, but I do want to have just the basic set up handy 😊
+For a VanillaJS projects, use [Parcel](https://parceljs.org/).
+If you are getting started, [create-react-app](https://create-react-app.dev/docs/getting-started/) is better suited for you.
+The main purpose of this repo is to set up webpack with react. See under the hood and get your hands dirty 🔧
 
-### The master branch has the basic set up
-* file-loader
+### The main branch has the basic set up (fully up-to-date)
+* file-loader --> no needed anymore in webpack 5
 * css-loader
 * html-loader
-* CleanWebpackPlugin and HtmlWebpackPlugin
-### The sass branch is able to compile sass to css
+* CleanWebpackPlugin
+* HtmlWebpackPlugin
+* HotModuleReplacementPlugin
+### Support for Sass out-the-box
 * sass-loader
-* node-sass library
+* sass (dart)
 
-### The react branch has ReactJS up and running with support for modern JavaScript
+### The project include ReactJS configured
 * @babel/core
 * @babel/preset-env
 * babel-loader
-* react
+* react (v17.01)
 * react-dom
-* react-router-dom
 
-> Note: this branch uses sass by default
+
+> Note: react branch and main branch are the same. react branch will get updated with redux support in the future
 
 ### The react-tailwind branch is when you feel crazy enough to play around with TailwindCSS
 * tailwindcss
 * postcss-cli
 * autoprefixer
+> Note: This brach is paused. Tailwind just had a major release. I'm tweaking some things to get the most out the framework
